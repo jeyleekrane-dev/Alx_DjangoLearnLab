@@ -3,7 +3,8 @@ from .models import Book
 
 
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("title", "author", "publication_year")
+    list_filter = ("author", "publication_year")
 
 
 # Register the Book model with the custom admin class.
