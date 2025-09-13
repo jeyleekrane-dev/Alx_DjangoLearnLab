@@ -23,7 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qa@%-1#2ryo!yh3_4@0o@ar)b(0a&jm%m+3uswm*a=@v&^e#)0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  # Set to False in production for security
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+# Content Security Policy (CSP) example
+# If using django-csp, add 'csp' to INSTALLED_APPS and configure below
+# CSP_DEFAULT_SRC = ("'self'",)
+# CSP_SCRIPT_SRC = ("'self'",)
 
 ALLOWED_HOSTS = []
 
