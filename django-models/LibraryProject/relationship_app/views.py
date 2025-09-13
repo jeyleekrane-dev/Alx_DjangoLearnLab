@@ -1,6 +1,8 @@
+from .models import Library
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
-from .models import Book, Library
+from .models import Book
 
 # Function-based view to list all books
 
@@ -18,3 +20,7 @@ class LibraryDetailView(DetailView):
     context_object_name = 'library'
 
 # Create your views here.
+
+
+class Newview(DetailView):
+    pass
