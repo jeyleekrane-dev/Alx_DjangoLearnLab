@@ -30,6 +30,17 @@ X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+# Enforce HTTPS
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Additional secure headers
+SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Content Security Policy (CSP) example
 # If using django-csp, add 'csp' to INSTALLED_APPS and configure below
 # CSP_DEFAULT_SRC = ("'self'",)
