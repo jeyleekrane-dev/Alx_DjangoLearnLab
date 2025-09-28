@@ -52,7 +52,7 @@ class BookAPITestCase(APITestCase):
         self.assertEqual(years, [2021, 2020, 2020])
 
     def test_create_book_authenticated(self):
-        self.client.force_authenticate(user=self.user)
+        self.client.login(username='testuser', password='testpass')
         data = {'title': 'New Book', 'publication_year': 2022, 'author': self.author1.id}
         response = self.client.post('/api/books/', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -69,7 +69,7 @@ class BookAPITestCase(APITestCase):
         self.assertEqual(response.data['title'], 'Book One')
 
     def test_update_book_authenticated(self):
-        self.client.force_authenticate(user=self.user)
+        self.client.login(username='testuser', password='testpass')
         data = {'title': 'Updated Book', 'publication_year': 2020, 'author': self.author1.id}
         response = self.client.put(f'/api/books/{self.book1.id}/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -82,7 +82,7 @@ class BookAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_delete_book_authenticated(self):
-        self.client.force_authenticate(user=self.user)
+        self.client.login(username='testuser', password='testpass')
         response = self.client.delete(f'/api/books/{self.book1.id}/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Book.objects.count(), 2)
